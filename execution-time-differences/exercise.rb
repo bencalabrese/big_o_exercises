@@ -45,32 +45,26 @@ def largest_contiguous_subsum1(list)
   max
 end
 
-# time complexity
+# time complexity O(n)
 def largest_contiguous_subsum2(list)
-  running_total = best_possible_answer = possibly_lesser_sum = 0
+  running_total = best_possible_answer = 0
 
   list.each do |el|
-    if el + possibly_lesser_sum > 0
-      running_total += (el + possibly_lesser_sum)
-      possibly_lesser_sum = 0
-    else
-      possibly_lesser_sum += el
-    end
+    running_total += el
+
+    running_total = 0 if running_total < 0
 
     if running_total > best_possible_answer
       best_possible_answer = running_total
     end
 
-    if possibly_lesser_sum + running_total < 0
-      running_total = possibly_lesser_sum = 0
-    end
   end
 
   best_possible_answer
 end
 
-# p largest_contiguous_subsum2([4, -1, -1, -1, 20])
+# p largest_contiguous_subsum2([4, -1, -1, -1, 20]) #21
 # list1 = [-14, 6, 3, -7, 4, 4, -8, -10]
 # list2 = [1, 1, 1, -5, 4, 2]
-# p  largest_contiguous_subsum2(list1) # => 8
+# p  largest_contiguous_subsum2(list1) # => 10
 # p  largest_contiguous_subsum2(list2) # => 6
