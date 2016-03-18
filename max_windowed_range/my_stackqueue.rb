@@ -26,6 +26,14 @@ class StackQueue
     @active_queue.size
   end
 
+  def min
+    @active_queue.min
+  end
+
+  def max
+    @active_queue.max
+  end
+
   def empty?
     @active_queue.empty?
   end
